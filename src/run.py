@@ -35,7 +35,16 @@ def run(_run, _config, _log):
     _log.info("\n\n" + experiment_params + "\n")
 
     # configure tensorboard logger
-    unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    if args.env == 'sc2':
+        unique_token = "{}/{}__{}".format(args.env_args['map_name'], args.name,
+                                          datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    elif str(args.env).startswith('academy'):  # for gfootball
+        unique_token = "{}/{}/seed_{}".format(
+            args.env_args['env_name'], args.name[:-6], args.seed)
+    else:
+        unique_token = "{}__{}".format(
+            args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+
     args.unique_token = unique_token
     if args.use_tensorboard:
         tb_logs_direc = os.path.join(dirname(dirname(abspath(__file__))), "results", "tb_logs")
