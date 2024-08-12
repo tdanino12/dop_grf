@@ -17,7 +17,7 @@ REGISTRY = {
     "academy_3_vs_1_with_keeper": partial(env_fn, env=Academy_3_vs_1_with_Keeper),
     "academy_counterattack_hard": partial(env_fn, env=Academy_Counterattack_Hard),
 }
-REGISTRY["sc2"] = partial(env_fn, env=StarCraft2Env)
+#REGISTRY["sc2"] = partial(env_fn, env=StarCraft2Env)
 
 if sys.platform == "linux":
     os.environ.setdefault("SC2PATH",
