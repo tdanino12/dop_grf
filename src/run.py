@@ -9,7 +9,7 @@ from types import SimpleNamespace as SN
 from utils.logging import Logger
 from utils.timehelper import time_left, time_str
 from os.path import dirname, abspath
-
+import wandb
 from learners import REGISTRY as le_REGISTRY
 from runners import REGISTRY as r_REGISTRY
 from controllers import REGISTRY as mac_REGISTRY
@@ -98,6 +98,14 @@ def run_sequential(args, logger):
     # args.shield_bits_enemy = env_info["shield_bits_enemy"]
     # args.n_enemies = env_info["n_enemies"]
 
+    os.environ["WANDB_API_KEY"] = "495b87eba3dbc88f719508680483181c811852ba"
+    run = wandb.init(
+    project=args.wandb_project,
+    group=args.wandb_group,
+    name="seed if:{}".format(args.seed),
+    )
+    wandb.login(key = os.environ["WANDB_API_KEY"])    # Default/Base scheme
+    
     # Default/Base scheme
     scheme = {
         "state": {"vshape": env_info["state_shape"]},
