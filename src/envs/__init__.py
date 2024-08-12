@@ -1,6 +1,7 @@
 from functools import partial
 #from smac.env import MultiAgentEnv, StarCraft2Env
 from .multiagentenv import MultiAgentEnv
+from .grf import Academy_3_vs_1_with_Keeper, Academy_Counterattack_Hard
 import sys
 import os
 
